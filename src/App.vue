@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -41,6 +43,19 @@ export default {
     sendData(e) {
       e.preventDefault();
       console.log("Active");
+
+      axios
+        .post("http://localhost/VueAPI/api.php", {
+          name: this.friend.name,
+          phone: this.friend.phone,
+          email: this.friend.email,
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
       this.clearData();
     },
 
